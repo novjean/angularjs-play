@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular to DB</title>
+</head>
+    
+<body>
+    <div ng-app="myapp" ng-controller="empcontroller">
+        <form>
+            Employee No. <input type="text" ng-model="empno" /><br />
+            First Name <input type="text" ng-model="fname" /><br />
+            Last Name <input type="text" ng-model="lname" /><br />
+            Department <input type="text" ng-model="dept" /><br />
+            <input type="button" ng-click="insertdata()" />
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('myapp',[]);
+        app.controller('empcontroller', function($scope, $http){
+            $scope.insertdata = function(){
+                $http.post("insert.php", 
+                {'empno':$scope.empno,
+                'empno':$scope.fname,
+                'empno':$scope.lname,
+                'empno':$scope.dept
+                }).success(function(data,status,headers,config){
+                    console.log("data inserted successfully");
+                })
+
+            }
+        });
+    </script>
+
+
+    <h1>This is a Heading</h1>
+    <p>This is a paragraph.</p>
+
+</body>
+
+</html>
